@@ -10,20 +10,20 @@ Focus on what's important in life. Automate away the chores.
 
 In development, this project is divided into 3 parts.
 1. Data mining and labeling
-  * Utilizes python selenium API to scrap Indeed.com for data
-  * Label positive data. Dataset is small.
-  * Mine large amounts of negative data. Dataset here is huge.
+  1. Utilizes python selenium API to scrap Indeed.com for data
+  2. Label positive data. Dataset is small.
+  3. Mine large amounts of negative data. Dataset here is huge.
 2. Train, evaluate, and export deep learning model
-  * Uses tf.keras API to construct sequential model
-  * Model stacks Google's Universal Sentence Encoder module with 3 additional Dense layers plus 1 final output layer
-  * Uses class weights to compensate for a highly unbalanced dataset
-  * Train to maximize val_auc value (auc: Area Under the Curve)
-  * Evaluate based on confusion matrix, true/false postives/negatives, precision and recall
-  * Export trained model to Saved Model format
-  * Have a dedicated computer as a host tf_server
+  1. Uses tf.keras API to construct sequential model
+  2. Model stacks Google's Universal Sentence Encoder module with 3 additional Dense layers plus 1 final output layer
+  3. Uses class weights to compensate for a highly unbalanced dataset
+  4. Train to maximize val_auc value (auc: Area Under the Curve)
+  5. Evaluate based on confusion matrix, true/false postives/negatives, precision and recall
+  6. Export trained model to Saved Model format
+  7. Have a dedicated computer as a host tf_server
 3. Indeed crawler
-  * Uses selenium headless mode for background automation tasks
-  * Performs task daily to find new jobs in the area around the human user
+  1. Uses selenium headless mode for background automation tasks
+  2. Performs task daily to find new jobs in the area around the human user
 
 In production, the task is shared between 2 computers or virtual machines.
 1. Computer A performs daily web crawling on Indeed.com and collects new jobs in the area.
