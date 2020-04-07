@@ -1,0 +1,1 @@
+Scrub all sensitive credential information prior to GitHub upload. 
