@@ -33,10 +33,17 @@ In production, the task is shared between 2 computers or virtual machines.
 5. A interprets the output vector, and compiles report of its findings, sends to human user.
 
 ![alt text](img/output_sample.jpg)
+
 a sample email report. links provided for easier access to job page. ranked based on probability.
+
 ![alt text](img/p0.9.png)
+
 model metrics when evaluated against probability_threshold = 0.9
+
 ![alt text](img/p0.5.png)
+
 model metrics when evaluated against probability_threshold = 0.5
+
 ![alt text](img/neural_net_architecture.PNG)
-model architecture. majority of model is frozen. module through transfer learning from tf_hub 
+
+model architecture. majority of model is frozen. module through transfer learning from tf_hub
