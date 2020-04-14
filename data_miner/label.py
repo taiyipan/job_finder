@@ -44,6 +44,7 @@ for line in features:
         show = True
         print('Bypassing the first {} features'.format(features_count))
         seperation_line()
+        new_count = features_count
     if show:
         print(line)
     # when seeing seperation tag, increment count
@@ -52,8 +53,10 @@ for line in features:
             features_count += 1
         # prompt human labeler for input for next feature entry
         if show:
+            new_count += 1
             while True:
-                print('\nPlease apply a label to the above job posting')
+                print('\nEntry {}:'.format(new_count))
+                print('Please apply a label to the above job posting')
                 print('\n0: not interested, not qualified')
                 print('1: interested, qualified')
                 print('-1: quit labeling program')

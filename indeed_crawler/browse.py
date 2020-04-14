@@ -22,7 +22,7 @@ import yagmail
 # define search criteria
 job_title = None
 job_location = 'San Francisco Bay Area'
-limit = 1500
+limit = 2000
 confidence_threshold = 0.9
 attempts = 3
 headless = True
@@ -51,9 +51,9 @@ def find_driver_path() -> str:
 driver_path = find_driver_path()
 
 # initialize email report content
-email_account = 'account'
-email_password = 'password'
-receiver_email = 'email'
+email_account = ''
+email_password = ''
+receiver_email = ''
 yag = yagmail.SMTP(email_account, email_password)
 report = str()
 report += '\nHello Taiyi! This is your Job Finder A.I. program.'
@@ -116,7 +116,7 @@ for i in range(attempts):
         ), 5).until(
             EC.presence_of_element_located((
                 By.XPATH,
-                './/li[6]/a'
+                './/li/a[contains(@title, "within 50 miles")]'
             ))
         )
     try:
@@ -124,7 +124,7 @@ for i in range(attempts):
     except:
         driver.execute_script("arguments[0].click();", select_distance)
 
-    # (2) show only entry level positions
+    # (1) show only entry level positions
     try:
         select_experience = WebDriverWait(WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((
@@ -134,7 +134,7 @@ for i in range(attempts):
         ), 5).until(
             EC.presence_of_element_located((
                 By.XPATH,
-                './/div[@id="rb_Experience Level"]/div[@id="EXP_LVL_rbo"]/ul[@class="rbList"]/li[1]/a'
+                './/div[@id="rb_Experience Level"]/div[@id="EXP_LVL_rbo"]/ul[@class="rbList"]/li/a[contains(@title, "Entry Level")]'
             ))
         )
     except:
@@ -146,7 +146,7 @@ for i in range(attempts):
         ), 5).until(
             EC.presence_of_element_located((
                 By.XPATH,
-                './/li[1]/a'
+                './/li/a[contains(@title, "Entry Level")]'
             ))
         )
     try:
@@ -322,8 +322,8 @@ for i in range(attempts):
         except:
             driver.execute_script("arguments[0].click();", next)
 
-    # close driver
-    driver.close()
+    # close driver and all windows
+    driver.quit()
 
     # harvest summary
     print('\nHarvested {} job postings from today'.format(len(input_data)))
@@ -354,7 +354,7 @@ request.inputs[input_name].CopyFrom(tf.make_tensor_proto(tf.convert_to_tensor(in
 
 # send query
 try:
-    server_address = 'ip_address'
+    server_address = ''
     print('\nSending input data to remote tensorflow server at {}'.format(server_address))
     channel = grpc.insecure_channel(server_address)
     predict_service = prediction_service_pb2_grpc.PredictionServiceStub(channel)
@@ -401,3 +401,4 @@ print(report)
 
 # send final report through email
 yag.send(to = receiver_email, subject = 'Job Finder Successful', contents = report)
+quit()
