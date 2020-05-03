@@ -15,7 +15,7 @@ job_titles = [
     'machine learning intern'
 ]
 job_location = None
-limit = 100
+limit = 50
 attempts = 3
 headless = True
 
@@ -202,7 +202,7 @@ for job_title in job_titles:
                 job_title_link = WebDriverWait(job, 5).until(
                     EC.presence_of_element_located((
                         By.XPATH,
-                        './/div[@class="title"]/a'
+                        './/h2[@class="title"]/a'
                     ))
                 )
 
@@ -247,17 +247,32 @@ for job_title in job_titles:
                     print('limit at {} reached'.format(limit))
                     break
 
-            # go to next page
+            # locate next button
             try:
-                next = WebDriverWait(driver, 10).until(
+                next = WebDriverWait(driver, 3).until(
                     EC.presence_of_element_located((
                         By.LINK_TEXT,
                         'Next »'
                     ))
                 )
             except:
-                print('Next not detected')
-                break
+                try:
+                    next = WebDriverWait(WebDriverWait(driver, 3).until(
+                        EC.presence_of_element_located((
+                            By.ID,
+                            'resultsCol'
+                        ))
+                    ), 3).until(
+                        EC.presence_of_element_located((
+                            By.XPATH,
+                            './/nav[@role="navigation"]/div[@class="pagination"]/ul[@class="pagination-list"]/li/a[@aria-label="Next"]'
+                        ))
+                    )
+                except Exception as e:
+                    print(e)
+                    print('Next not detected')
+                    break
+            # go to next page
             try:
                 next.click()
             except:

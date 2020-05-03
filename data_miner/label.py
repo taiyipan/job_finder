@@ -1,5 +1,6 @@
 # get feature file name
-name = 'junior_machine_learning_engineer_2020-03-31'
+# name = 'junior_software_developer_2020-04-19'
+name = 'machine_learning_intern_2020-04-19'
 
 def generate_feature_path(name: str) -> str:
     return 'data/features/' + name + '.txt'
