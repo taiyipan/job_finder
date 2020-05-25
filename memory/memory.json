@@ -1,0 +1,39 @@
+{
+    "DistanceSelector": [
+        2,
+        1
+    ],
+    "ExperienceSelector": [
+        3,
+        2,
+        1
+    ],
+    "DateSelector": [
+        2,
+        1
+    ],
+    "JobDescriptor": [
+        3,
+        1,
+        2
+    ],
+    "NextButton": [
+        2,
+        1
+    ],
+    "PageNumberSelector": [
+        1
+    ],
+    "AllJobsSelector": [
+        1
+    ],
+    "JobDateSelector": [
+        1
+    ],
+    "JobLinkSelector": [
+        1
+    ],
+    "JobTitleSelector": [
+        1
+    ]
+}
