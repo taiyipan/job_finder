@@ -1,0 +1,34 @@
+{
+  "model_id": 3,
+  "objective": "val_auc",
+  "val_eval": {
+    "loss": 0.08,
+    "acc": 0.9661,
+    "precision": 0.3172,
+    "recall": 0.9787,
+    "auc": 0.9859
+  }
+  "num_hidden_layers": 4,
+  "learning_rate": 0.001,
+  "neural_net_architecture": {
+    1: {
+      "dense_units": 928,
+      "dropout_rate": 0.4
+    },
+    2: {
+      "dense_units": 928,
+      "dropout_rate": 0.5
+    },
+    3: {
+      "dense_units": 800,
+      "dropout_rate": 0.2
+    },
+    4: {
+      "dense_units": 544,
+      "dropout_rate": 0.2
+    },
+    "output_layer": {
+      "dense_units": 1
+    }
+  }
+}

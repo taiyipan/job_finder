@@ -22,24 +22,31 @@ def model():
         dtype = tf.string
     )
 
-    # define model
+    # define model: hypertuned by Keras Tuner's Hyperband algorithm
+    # hyperparams tuned: num_hidden_layers, dense_units, dropout_rates
     model = keras.Sequential([
+        # input encoder
         universal_sentence_encoder,
-        keras.layers.Dense(512, activation = 'relu'),
+        # block 1
+        keras.layers.Dense(928, activation = 'relu'),
+        keras.layers.Dropout(0.4),
+        # block 2
+        keras.layers.Dense(928, activation = 'relu'),
         keras.layers.Dropout(0.5),
-        keras.layers.Dense(512, activation = 'relu'),
-        keras.layers.Dropout(0.5),
-        keras.layers.Dense(512, activation = 'relu'),
-        keras.layers.Dropout(0.5),
-        keras.layers.Dense(512, activation = 'relu'),
-        keras.layers.Dropout(0.5),
+        # block 3
+        keras.layers.Dense(800, activation = 'relu'),
+        keras.layers.Dropout(0.2),
+        # block 4
+        keras.layers.Dense(544, activation = 'relu'),
+        keras.layers.Dropout(0.2),
+        # output sigmoid activation with initialized bias
         keras.layers.Dense(1, activation = 'sigmoid')
     ])
     model.summary()
 
     # compile model with many metrics
     model.compile(
-        optimizer = 'adam',
+        optimizer = keras.optimizers.Adam(learning_rate = 0.001), # hypertuned learning rate
         loss = 'binary_crossentropy',
         metrics = [
             keras.metrics.TruePositives(name = 'tp'),
@@ -65,7 +72,7 @@ except:
     print('No weights detected.')
 
 # save model
-model_version = '1'
+model_version = '4'
 model_name = 'job_finder'
 model_path = os.path.join(model_name, model_version)
 tf.saved_model.save(model, model_path)

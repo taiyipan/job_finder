@@ -12,7 +12,7 @@ class Controller:
         job_title = None,
         job_location = 'San Francisco Bay Area',
         limit = 2000,
-        confidence_threshold = 0.9,
+        confidence_threshold = 0.5,
         duration = 40,
         debug = False,
         distance = 'within 50 miles',

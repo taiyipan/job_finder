@@ -15,12 +15,13 @@ In development, this project is divided into 3 parts.
    3. Mine large amounts of negative data. Dataset here is huge.
 2. Train, evaluate, and export deep learning model
    1. Uses tf.keras API to construct sequential model
-   2. Model stacks Google's Universal Sentence Encoder module with 3 additional Dense layers plus 1 final output layer
+   2. Model stacks Google's Universal Sentence Encoder module with a DNN top level classifier
    3. Uses class weights to compensate for a highly unbalanced dataset
    4. Train to maximize val_auc value (auc: Area Under the Curve)
-   5. Evaluate based on confusion matrix, true/false postives/negatives, precision and recall
-   6. Export trained model to Saved Model format
-   7. Have a dedicated computer as a host tf_server
+   5. Further optimize neural net architecture using Keras Tuner and Hyperband algorithm to fine tune hyperparameters
+   6. Evaluate based on confusion matrix, true/false postives/negatives, precision and recall
+   7. Export trained model to Saved Model format
+   8. Have a dedicated computer as a host tf_server
 3. Indeed crawler
    1. Uses selenium headless mode for background automation tasks
    2. Performs task daily to find new jobs in the area around the human user
@@ -35,10 +36,6 @@ In production, the task is shared between 2 computers or virtual machines.
 ![alt text](img/output_sample.jpg)
 
 a sample email report. links provided for easier access to job page. ranked based on probability.
-
-![alt text](img/p0.9.png)
-
-model metrics when evaluated against probability_threshold = 0.9
 
 ![alt text](img/p0.5.png)
 
